@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "sitemap_proxy/version"
+require "http"
 
 class SitemapProxy
   HEADERS = {
