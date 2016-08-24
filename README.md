@@ -1,8 +1,6 @@
 # SitemapProxy
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sitemap_proxy`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A simple rack app for proxying requests for sitemap.xml to a remote host.
 
 ## Installation
 
@@ -22,7 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem includes a single rack app called `SitemapProxy` that you should mount at the desired path. For example, to mount it in a Rails routes.rb file, use:
+
+```ruby
+get ':path',
+  constraints: { path: %r{sitemap\d*\.xml(.gz)?} },
+  to: SitemapProxy.new(SITEMAP_HOST)
+```
+
+## CDN
+
+Be sure to use a CDN in front of your app since the request to the remote host can be slow and this will tie up your web thread/process.
 
 ## Development
 
